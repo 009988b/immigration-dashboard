@@ -1,0 +1,11 @@
+type Person {
+	id: ID
+	firstName: String
+	lastName: String
+	birthDate: String
+	dlNumber: String
+	passportNumber: String
+	passportExpDate: String
+	dmvPhotoURL: String
+	passportPhotoURL: String
+}
