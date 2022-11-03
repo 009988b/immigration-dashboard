@@ -1,0 +1,64 @@
+
+.CbpLogo {
+    position: relative;
+    object-fit: contain;
+    margin-left: 0px;
+    margin-top: 24px;
+}
+
+.Prompt {
+    font-size: 20px;
+    position: relative;
+    object-fit: contain;
+}
+
+.Textbox {
+    position: relative;
+    height: 15%;
+    width: 40%;
+    object-fit: contain;
+    text-align: center;
+    font-size: 26px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+.SearchBtn {
+    position: relative;
+    width: 50%;
+    height: 15%;
+    font-size: 20px;
+    object-fit: contain;
+    background-color: blue;
+    color: white;
+    border-radius: 12px;
+    margin-top: 8px;
+}
+
+.LoginBtn {
+    position: relative;
+    width: 50%;
+    height: 15%;
+    font-size: 20px;
+    object-fit: contain;
+    background-color: skyblue;
+    color: black;
+    border-radius: 12px;
+    margin-top: 8px;
+}
+
+.Button3 {
+    position: relative;
+    width: 50%;
+    height: 15%;
+    font-size: 20px;
+    object-fit: contain;
+    background-color: skyblue;
+    color: black;
+}
+
+.InfoText {
+    position: relative;
+    object-fit: contain;
+}
