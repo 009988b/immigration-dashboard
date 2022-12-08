@@ -5,6 +5,33 @@ import {signIn} from "../libs/cognito";
 import {CognitoUserSession} from "amazon-cognito-identity-js";
 import {Person} from "../libs/vendia";
 
+function Results(props: {person: Person}) {
+    return (
+        <div style={{ position: "relative", height: "100%", display: "flex", flexDirection: "column", width: "100%"}}>
+            <div style={{ position: "relative", height: "50%", display: "flex", flexDirection: "column" }}>
+                <div style={{ position: "relative", height: "20%" }}>
+                    <div>{props.person.id}</div>
+                    <div>{props.person.firstName}</div>
+                    <div>{props.person.lastName}</div>
+                    <div>{props.person.birthDate}</div>
+                    <div>{props.person.dlNumber}</div>
+                    <div>{props.person.passportNumber}</div>
+                    <div>{props.person.passportExpDate}</div>
+                </div>
+            </div>
+            <div style={{ position: "relative", height: "50%", display: "flex", flexDirection: "row" }}>
+                <div style={{ position: "relative", height: "100%", width: "50%" }}>
+                    <img className="DMVPhoto" style={{height: "50%", width: "50%"}}
+                        src={props.person.dmvPhotoURL} alt={""}/>
+                    <img className="PassportPhoto" style={{height: "50%", width: "50%"}}
+                         src={props.person.passportPhotoURL} alt={""}/>
+                </div>
+            </div>
+        </div>
+    )
+}
+
+
 const Home = (props: {}) => {
     const [loggedIn, setLoggedIn] = useState(false);
     //Using a simple status parameter to show the login form screen
@@ -17,7 +44,7 @@ const Home = (props: {}) => {
     const [cognitoUserSession, setCognitoUserSession] = useState<CognitoUserSession | undefined>(undefined);
     //Once the search results return from the promise, we can display them
     const [searchResults, setSearchResults] = useState<Person | undefined>(undefined);
-
+    /**/
     return (
         <div style={{height: "100%", width: "100%", position: "absolute", fontFamily: "Roboto", fontSize: 14}}>
             <div style={{height: "100%", width: "100%", flex: 1, flexDirection: "column", backgroundColor: "#F6F6F6", alignItems: "center"}}>
@@ -56,8 +83,9 @@ const Home = (props: {}) => {
                         </div>
                     )}
                     {(loggedIn && searchResults) && (
-                        <div>**SEARCH RESULTS WILL BE DISPLAYED HERE**</div>
+                        <Results person={searchResults}/>
                     )}
+
                 </div>
                 <div style={{position: "relative", height: 0.5, backgroundColor: "rgb(100,116,139)", marginBottom: 2}}/>
                 <div style={{position: "relative", height: "35%", width: "100%", display: "flex", flexDirection: "row"}}>

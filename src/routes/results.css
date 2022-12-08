@@ -1,0 +1,20 @@
+.DMVPhoto {
+    margin-left: 50px;
+    border: 10px solid lightblue;
+    border-radius: 25px;
+}
+
+.background {
+    margin-top: 25px;
+    background-color: lightgrey;
+    border: 2px solid grey;
+    border-radius: 25px;
+    padding: 20px;
+
+}
+
+.PassportPhoto {
+    margin-left: 50px;
+    border: 10px solid lightblue;
+    border-radius: 25px;
+}

@@ -12,11 +12,29 @@ export type Person = {
     passportPhotoURL: string
 }
 
-const submitForm = async () => {
+export const submitForm = async (ssn: number) => {
     //TODO: POST form data (just SS#) to Endpoint
     //TODO: Create graphQL Query to find Person by SS#
     //TODO: Return Promise
+    var query = `query GetPersonById {
+    list_PersonItems (
+        filter: {
+            ssn: {
+                eq: ${ssn}
+            }
+        }
+    ) {
+        _PersonItems {
+            _id
+            ssn
+            firstName
+            lastName
+            dmvPhotoURL
+            passportPhotoURL
+            dlNumber
+            birthDate
+            passportExpDate
+        }
+    }`;
+
 }
-
-export default submitForm();
-
