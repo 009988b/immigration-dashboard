@@ -3,33 +3,8 @@ import {Button, Input} from "@mui/material";
 import "./home.css";
 import {signIn} from "../libs/cognito";
 import {CognitoUserSession} from "amazon-cognito-identity-js";
-import {Person} from "../libs/vendia";
-
-function Results(props: {person: Person}) {
-    return (
-        <div style={{ position: "relative", height: "100%", display: "flex", flexDirection: "column", width: "100%"}}>
-            <div style={{ position: "relative", height: "50%", display: "flex", flexDirection: "column" }}>
-                <div style={{ position: "relative", height: "20%" }}>
-                    <div>{props.person.id}</div>
-                    <div>{props.person.firstName}</div>
-                    <div>{props.person.lastName}</div>
-                    <div>{props.person.birthDate}</div>
-                    <div>{props.person.dlNumber}</div>
-                    <div>{props.person.passportNumber}</div>
-                    <div>{props.person.passportExpDate}</div>
-                </div>
-            </div>
-            <div style={{ position: "relative", height: "50%", display: "flex", flexDirection: "row" }}>
-                <div style={{ position: "relative", height: "100%", width: "50%" }}>
-                    <img className="DMVPhoto" style={{height: "50%", width: "50%"}}
-                        src={props.person.dmvPhotoURL} alt={""}/>
-                    <img className="PassportPhoto" style={{height: "50%", width: "50%"}}
-                         src={props.person.passportPhotoURL} alt={""}/>
-                </div>
-            </div>
-        </div>
-    )
-}
+import {Person, submitForm} from "../libs/vendia";
+import {Results} from "../routes/Results";
 
 
 const Home = (props: {}) => {
@@ -77,9 +52,9 @@ const Home = (props: {}) => {
                     )}
                     {(loggedIn && !searchResults) && (
                         <div style={{position: "relative", height: "100%", width: "100%", display: "flex", flexDirection: "column", alignItems: "center"}}>
-                            <Button className = "LoginBtn" onClick={() => {/*TODO: ADD SIGN OUT FUNCITONALITY*/}}>Sign Out</Button>
+                            <Button className = "LogoutBtn" onClick={() => {/*TODO: ADD SIGN OUT FUNCITONALITY*/}}>Sign Out</Button>
                             <Input className ="Textbox" type="password" placeholder="Enter SSN" onChange={(event) => setSSN(event.target.value)}/>
-                            <Button className = "SearchBtn" onClick={() => {/*TODO: ADD SEARCH FUNCITONALITY*/}}>Search</Button>
+                            <Button className = "SearchBtn" onClick={() => {submitForm(parseInt(ssn)).then(results =>setSearchResults(results)); }}>Search</Button>
                         </div>
                     )}
                     {(loggedIn && searchResults) && (

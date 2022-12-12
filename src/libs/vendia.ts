@@ -1,3 +1,4 @@
+import axios from 'axios';
 const vendiaApiKey = process.env.REACT_APP_VENDIA_API_KEY;
 
 export type Person = {
@@ -13,28 +14,37 @@ export type Person = {
 }
 
 export const submitForm = async (ssn: number) => {
-    //TODO: POST form data (just SS#) to Endpoint
-    //TODO: Create graphQL Query to find Person by SS#
-    //TODO: Return Promise
-    var query = `query GetPersonById {
-    list_PersonItems (
-        filter: {
-            ssn: {
-                eq: ${ssn}
+    const response = await axios.post('https://cllk1rtabd.execute-api.us-west-1.amazonaws.com/graphql/', {
+        query: `query GetPersonById {
+            list_PersonItems (
+                filter: {
+                    ssn: {
+                        eq: ${ssn}
+                    }
+                }
+            ){
+                _PersonItems {
+                    _id
+                    ssn
+                    firstName
+                    lastName
+                    dmvPhotoURL
+                    passportPhotoURL
+                    dlNumber
+                    birthDate
+                    passportExpDate
+                }
             }
-        }
-    ) {
-        _PersonItems {
-            _id
-            ssn
-            firstName
-            lastName
-            dmvPhotoURL
-            passportPhotoURL
-            dlNumber
-            birthDate
-            passportExpDate
-        }
-    }`;
-
+        }`
+    }, {headers: {
+            'Authorization': vendiaApiKey
+        }})
+    if (response.data.data.list_PersonItems._PersonItems) {
+        console.log(response.data.data)
+        let person: Person = response.data.data.list_PersonItems._PersonItems[0]
+        console.log(person)
+        return person;
+    } else {
+        return undefined
+    }
 }
