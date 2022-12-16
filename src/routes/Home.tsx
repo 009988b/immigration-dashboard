@@ -38,7 +38,7 @@ const Home = (props: {}) => {
                     </div>
                 )}
                 <div style={{position: "relative", height: 0.5, backgroundColor: "rgb(100,116,139)", marginTop: 4}}/>
-                <div style={{position: "relative", height: "fit", backgroundColor: "rgb(248,250,252)", textAlign: 'left', display: "flex", flexDirection: "column", alignItems: "center"}}>
+                <div style={{position: "relative", height: "fit", minHeight: 300, backgroundColor: "rgb(248,250,252)", textAlign: 'left', display: "flex", flexDirection: "column", alignItems: "center"}}>
                     {(status == 'initial') && (
                         <Button className = "LoginBtn" onClick={() => setStatus('logging-in')}>Login</Button>
                     )}
@@ -58,7 +58,7 @@ const Home = (props: {}) => {
                         </div>
                     )}
                     {(loggedIn && searchResults) && (
-                        <Results person={searchResults} similarity={0.64+(Math.random()/5)}/>
+                        <Results person={searchResults}/>
                     )}
 
                 </div>

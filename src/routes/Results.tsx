@@ -3,7 +3,7 @@ import {Person} from "../libs/vendia";
 import './results.css';
 //not sure if we will use this component, for organization purposes perhaps
 
-export function Results(props: {person: Person, similarity: number}) {
+export function Results(props: {person: Person}) {
     return (
         <div style={{ position: "relative", height: "100%", display: "flex", flexDirection: "column"}}>
             <div style = {{position: "relative", height: "0%", left: 150}}>DMV Photo</div>
@@ -23,7 +23,6 @@ export function Results(props: {person: Person, similarity: number}) {
                     <div style = {{position: "relative", height: "30%", textAlign: "center", left: 200}}>Driver's License Number: {props.person.dlNumber}</div>
                     <div style = {{position: "relative", height: "30%", textAlign: "center", left: 200}}>Passport Number: {props.person.passportNumber}</div>
                     <div style = {{position: "relative", height: "30%", textAlign: "center", left: 200}}>Passport Expiration Date: {props.person.passportExpDate}</div>
-                    <div style = {{position: "relative", height: "30%", textAlign: "center", left: 200}}>Face Similarity: {props.similarity}</div>
                 </div>
             </div>
         </div>
